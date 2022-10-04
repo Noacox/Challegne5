@@ -49,8 +49,11 @@ public class CloudService {
                 if (c.getCategory()!=null){
                     q.get().setCategory(c.getCategory());
                 }
-                if (c.getModel()!=null){
-                    q.get().setModel(c.getModel());
+                if (c.getYear()!=null){
+                    q.get().setYear(c.getYear());
+                }
+                if (c.getDescription()!=null){
+                    q.get().setDescription(c.getDescription());
                 }
                 cloudRepository.save(q.get());
                 return q.get();

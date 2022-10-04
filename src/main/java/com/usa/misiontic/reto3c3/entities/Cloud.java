@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name= "cloud")
@@ -12,13 +13,53 @@ public class Cloud implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private Integer model;
+    private Integer year;
     private String brand;
-
+    private String description;
     @ManyToOne
     @JoinColumn(name="categoryid")
     @JsonIgnoreProperties("clouds")
     private Category category;
+
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "cloud")
+    @JsonIgnoreProperties("cloud")
+    private List<Message> messages;
+
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "cloud")
+    @JsonIgnoreProperties("cloud")
+    private List<Reservation> reservations;
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Integer getId() {
         return id;
@@ -36,15 +77,7 @@ public class Cloud implements Serializable {
         this.name = name;
     }
 
-    public Integer getModel() {
-        return model;
-    }
-
-    public void setModel(Integer model) {
-        this.model = model;
-    }
-
-    public String getBrand() {
+      public String getBrand() {
         return brand;
     }
 
