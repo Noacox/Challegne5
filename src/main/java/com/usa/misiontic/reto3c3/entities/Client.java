@@ -18,7 +18,7 @@ public class Client implements Serializable {
     private Integer age;
 
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "client")
-    @JsonIgnoreProperties("client")
+    @JsonIgnoreProperties({"client","messages"})
     private List<Message> messages;
 
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "client")

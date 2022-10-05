@@ -1,5 +1,6 @@
 package com.usa.misiontic.reto3c3.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -14,13 +15,14 @@ public class Message implements Serializable {
     private Integer idMessage;
     private String messageText;
 
+
     @ManyToOne
     @JoinColumn(name="messageCloud")
     @JsonIgnoreProperties({"messages", "reservations"})
     private Cloud cloud;
     @ManyToOne
     @JoinColumn(name="messageClient")
-    @JsonIgnoreProperties({"messages", "reservations"})
+    @JsonIgnoreProperties({"messages", "reservations","client"})
     private Client client;
 
 

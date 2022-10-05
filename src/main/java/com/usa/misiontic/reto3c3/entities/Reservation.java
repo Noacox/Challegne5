@@ -1,10 +1,12 @@
 package com.usa.misiontic.reto3c3.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.text.DateFormat;
+import java.util.Date;
 
 @Entity
 @Table(name="reservation")
@@ -14,20 +16,19 @@ public class Reservation implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer idReservation;
-    private String startDate;
-    private String devolutionDate;
+    private Date startDate;
+    private Date devolutionDate;
     private String status;
 
 
     @ManyToOne
     @JoinColumn(name="id")
-    @JsonIgnoreProperties("reservations")
+    @JsonIgnoreProperties({"reservations", "messages[]"})
     private Cloud cloud;
     @ManyToOne
     @JoinColumn(name="idClient")
     @JsonIgnoreProperties({"messages", "reservations"})
     private Client client;
-
     private Float score;
 
     public Client getClient() {
@@ -55,19 +56,19 @@ public class Reservation implements Serializable {
     }
 
 
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public String getDevolutionDate() {
+    public Date getDevolutionDate() {
         return devolutionDate;
     }
 
-    public void setDevolutionDate(String devolutionDate) {
+    public void setDevolutionDate(Date devolutionDate) {
         this.devolutionDate = devolutionDate;
     }
 
