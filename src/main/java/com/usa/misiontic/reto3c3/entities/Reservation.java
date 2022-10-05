@@ -17,17 +17,18 @@ public class Reservation implements Serializable {
     private String startDate;
     private String devolutionDate;
     private String status;
-    private Float score;
+
 
     @ManyToOne
-    @JoinColumn(name="reservationCloud")
+    @JoinColumn(name="id")
     @JsonIgnoreProperties("reservations")
     private Cloud cloud;
-
     @ManyToOne
-    @JoinColumn(name="reservationClient")
-    @JsonIgnoreProperties("reservations")
+    @JoinColumn(name="idClient")
+    @JsonIgnoreProperties({"messages", "reservations"})
     private Client client;
+
+    private Float score;
 
     public Client getClient() {
         return client;

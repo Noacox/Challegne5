@@ -6,6 +6,7 @@ import com.usa.misiontic.reto3c3.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +21,7 @@ public class ReservationService {
 
     public Reservation save(Reservation c){
         if (c.getIdReservation()==null){
+            c.setStatus("created");
             return reservationRepository.save(c);
         }else {
             Optional<Reservation> e = reservationRepository.getReservation(c.getIdReservation());
