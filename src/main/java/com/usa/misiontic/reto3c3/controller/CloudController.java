@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cloud")
+@RequestMapping("/api/cloud")
 public class CloudController {
     @Autowired
     private CloudService cloudService;
