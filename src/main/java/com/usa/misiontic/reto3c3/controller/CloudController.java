@@ -3,10 +3,8 @@ package com.usa.misiontic.reto3c3.controller;
 import com.usa.misiontic.reto3c3.entities.Cloud;
 import com.usa.misiontic.reto3c3.service.CloudService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +20,7 @@ public class CloudController {
     }
 
     @PostMapping("/save")
+    @ResponseStatus(HttpStatus.CREATED)
     public Cloud save(@RequestBody Cloud c){
         return cloudService.save(c);
     }

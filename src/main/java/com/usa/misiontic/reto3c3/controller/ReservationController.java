@@ -3,10 +3,8 @@ package com.usa.misiontic.reto3c3.controller;
 import com.usa.misiontic.reto3c3.entities.Reservation;
 import com.usa.misiontic.reto3c3.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +19,7 @@ public class ReservationController {
     public List<Reservation> getAll() {return reservationService.getAll();}
 
     @PostMapping("/save")
+    @ResponseStatus(HttpStatus.CREATED)
     public Reservation save(@RequestBody Reservation r){return reservationService.save(r);}
 
 
