@@ -22,7 +22,7 @@ public class Message implements Serializable {
     private Cloud cloud;
     @ManyToOne
     @JoinColumn(name="messageClient")
-    @JsonIgnoreProperties({"messages", "reservations","client"})
+    @JsonIgnoreProperties({"messages", "reservations"})
     private Client client;
 
 
