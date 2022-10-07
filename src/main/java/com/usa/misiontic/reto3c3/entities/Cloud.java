@@ -13,8 +13,8 @@ public class Cloud implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private Integer year;
     private String brand;
+    private Integer year;
     private String description;
     @ManyToOne
     @JoinColumn(name="categoryid")
