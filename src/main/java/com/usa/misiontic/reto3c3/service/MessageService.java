@@ -18,7 +18,7 @@ public class MessageService {
         return messageRepository.getAll();
     }
 
-    public Optional<Message> getCloud(int id){
+    public Optional<Message> getMessage(int id){
         return messageRepository.getMessage(id);
     }
 
