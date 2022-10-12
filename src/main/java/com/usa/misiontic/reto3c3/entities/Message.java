@@ -13,6 +13,8 @@ public class Message implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer idMessage;
+    @Column(name="messageText" , length = 250, nullable = false)
+
     private String messageText;
 
 
