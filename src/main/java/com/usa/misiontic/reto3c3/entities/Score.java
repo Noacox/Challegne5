@@ -13,11 +13,13 @@ public class Score implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Integer id;
+    @Column(name="score" , length = 1, nullable = false)
     private Integer score;
 
-    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "cloud")
-    @JsonIgnoreProperties({"score","messages"})
-    private List<Reservation> reservations;
+    @ManyToOne
+    @JoinColumn(name="reservationid")
+    @JsonIgnoreProperties("scores")
+    private Reservation reservation;
 
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "cloud")
     @JsonIgnoreProperties({"score"})
@@ -39,11 +41,20 @@ public class Score implements Serializable {
         this.score = score;
     }
 
-    public List<Reservation> getReservations() {
-        return reservations;
+    public Reservation getReservation() {
+        return reservation;
     }
 
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
     }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
 }

@@ -6,6 +6,7 @@ import com.usa.misiontic.reto3c3.entities.Reservation;
 import com.usa.misiontic.reto3c3.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.Optional;
 
 @Service
 public class ReservationService {
-    
+    private Date fecha;
     @Autowired
     private ReservationRepository reservationRepository;
     
@@ -23,11 +24,13 @@ public class ReservationService {
     public Optional<Reservation> getReservation(int id) {return reservationRepository.getReservation(id);}
 
     public Reservation save(Reservation c){
+        //fecha= java.time.Clock.systemUTC().instant();
         if (c.getIdReservation()==null){
             return reservationRepository.save(c);
         }else {
             Optional<Reservation> e = reservationRepository.getReservation(c.getIdReservation());
             if(e.isPresent()){
+                e.get().setStartDate(fecha);
                 return c;
             }else{
                 return reservationRepository.save(c);
@@ -36,7 +39,6 @@ public class ReservationService {
     }
 
     public Reservation update(Reservation c){
-
         if (c.getIdReservation()!=null){
             Optional<Reservation> q= reservationRepository.getReservation(c.getIdReservation());
             if (q.isPresent()){
