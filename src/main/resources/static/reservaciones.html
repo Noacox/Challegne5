@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script type="text/javascript" src="js/funcionesCloud.js"></script>  
-        <script src="https://cdn.tailwindcss.com"></script> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous" id="bootstrap-css"></script>
+        <script type="text/javascript" src="js/funcionesReservaciones.js"></script>
         <link rel="stylesheet" href="css/styles.css">
+        <script src="https://cdn.tailwindcss.com"></script> 
     </head>
     <body>
         <nav class="bg-gradient-to-r from-indigo-600 to-gray-900 ">
@@ -35,53 +34,45 @@
                     </div>
                 </div>
               </div>
-            
-           
             </div>
           </div>
     
-        </nav>
-
+        </nav> 
+        <div class="container" align="center">     
+        <h1>RESERVACIONES</h1>
         <script type="text/javascript">
-            window.onload = getCloud();
+            window.onload = getCloud_Reservation();
         </script>
 
         <script type="text/javascript">
-            window.onload = getCategoria_Cloud();
+            window.onload = getClient_Reservation();
         </script>
-        
-        <h1 class="text-md-center m-4">CLOUDS</h1>
-        
-        <div id="resultadoCloud"></div>
-        <div class="container" align="center">
-        <div class="form-group">
-            <label for="brand" class="text-info">Brand:</label><br />
-            <input type="brand" name="brand" id="brand" placeholder="brand" class="form-control" required/>
-            </div>
-              
-                <div class="form-group">
-                  <label for="year" class="text-info">Year:</label><br />
-                  <input type="number" id="year" placeholder="year" class="form-control" required/>
-                </div>
-                <div class="form-group">
-                  <label for="category_id" class="text-info">Category:</label><br />
-                  <input type="number" id="category_id" placeholder="category" class="form-control" required/>
-                </div>
-                <div class="form-group">
-                  <label for="name" class="text-info">Name:</label><br />
-                  <input type="text" id="name" placeholder="name" class="form-control" required/>
-                </div>
-                <div class="form-group">
-                  <label for="description" class="text-info">Description:</label><br />
-                  <input type="text" id="description" placeholder="description" class="form-control" required/>
-                </div>
-         <p>
-        <select id="select-categoria"></select></p>     
 
-        <button class="btn btn-primary" onclick="postCloud()">
-            Crear Cloud
+        <script type="text/javascript">
+            window.onload = getReservaciones();
+        </script>
+
+        <label>Ingrese la fecha de inicio de la reservacion</label>
+        <input type="date" id="startDate" placeholder="startDate" ><br>
+        <label>Ingrese la fecha de devolucion de la cloud</label>
+        <input type="date" id="devolutionDate" placeholder="devolutionDate"><br>
+
+        <select  id="status">
+            <option value="completed">completada</option>
+            <option value="cancelled">cancelada</option>
+          </select><br>
+
+        <select id="select-cloud"></select><br>
+
+        <select id="select-client"></select><br>
+
+        <button class="btn btn-primary" onclick="postReservaciones()" >
+            Crear Reservacion
         </button>
-      </div>
+    </div>  
+
+        <div id="resultado1"></div>
+
     </body>
 
 </html>
